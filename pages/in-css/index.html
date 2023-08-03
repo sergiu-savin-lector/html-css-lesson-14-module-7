@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/main.css" />
+
+    <title>HTML/CSS Modulul 7 - Lectia 14</title>
+    <style>
+      .img {
+        display: block;
+        height: 340px;
+        width: 563px;
+        background-size: 563px 340px;
+        background-repeat: no-repeat;
+      }
+
+      /* Pixel (px) based */
+      .img--with-image-set-px {
+        background-image: url("./image@1x.png"); /* fallback */
+        background-image: image-set(
+          url("./image@1x.png"),
+          url("./image@2x.png") 768w
+        );
+      }
+
+      .img--with-media-px {
+        background-image: url("./image@1x.png");
+      }
+
+      @media screen and (min-width: 768px) {
+        .img--with-media-px {
+          background-image: url("./image@2x.png");
+        }
+      }
+
+      /* Device Pixel Ratio (DPR) */
+      .img--with-image-set-dpr {
+        background-image: url("./image@1x.png"); /* fallback */
+        background-image: image-set(
+          url("./image@1x.png") 1x,
+          url("./image@2x.png") 2x
+        );
+      }
+
+      .img--with-media-dpr {
+        background-image: url("./image@1x.png");
+      }
+
+      @media screen and (min-device-pixel-ratio: 1.5) {
+        .img--with-media-dpr {
+          background-image: url("./image@2x.png");
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container example-page">
+      <h1 class="heading-primary sticky">Imagini de fundal - responsive</h1>
+      <article>
+        <p>
+          Putem fie folosi <em>@media</em>, fie sa folosim <em>image-set</em>
+        </p>
+      </article>
+      <section class="lesson-example">
+        <h2>With px</h2>
+        <h3>With image-set</h3>
+        <div class="image-container">
+          <div class="img img--with-image-set-px"></div>
+        </div>
+
+        <h3>With @media</h3>
+        <div class="image-container">
+          <div class="img img--with-media-px"></div>
+        </div>
+      </section>
+
+      <section class="lesson-example">
+        <h2>With DPR (Display Pixel Ratio)</h2>
+        <h3>With image-set</h3>
+        <div class="image-container">
+          <div class="img img--with-image-set-dpr"></div>
+        </div>
+
+        <h3>With @media</h3>
+        <div class="image-container">
+          <div class="img img--with-media-dpr"></div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

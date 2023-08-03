@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/main.css" />
+
+    <title>HTML/CSS Modulul 7 - Lectia 14</title>
+    <style>
+      .responsive-img {
+        display: block;
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="container example-page">
+      <h1 class="heading-primary sticky">Tag-ul &lt;picture&gt;</h1>
+      <article>
+        <p>
+          Elementul HTML <em>&lt;picture&gt;</em> conține zero sau mai multe
+          elemente <em>&lt;source&gt;</em> și un element
+          <em>&lt;img&gt;</em> pentru a oferi versiuni alternative ale unei
+          imagini pentru diferite scenarii de afișare/dispozitiv.
+        </p>
+        <p>
+          Browserul va lua în considerare fiecare element &lt;source&gt; copil
+          și va alege cea mai bună potrivire dintre ele. Dacă nu sunt găsite
+          potriviri - sau browserul nu acceptă elementul &lt;picture&gt; - este
+          selectată adresa URL a atributului src al elementului &lt;img&gt;.
+          Imaginea selectată este apoi prezentată în spațiul ocupat de elementul
+          &lt;img&gt;.
+        </p>
+      </article>
+      <section class="lesson-example">
+        <!--Change the browser window width to see the image change.-->
+        <picture>
+          <source srcset="./surfer-240-200.jpg" media="(min-width: 600px)" />
+          <img src="./painted-hand-298-332.jpg" alt="" />
+        </picture>
+      </section>
+      <section class="lesson-example">
+        <!-- prettier-ignore -->
+        <code>
+          &lt;picture>
+            &lt;source srcset="image.avif" type="image/avif">
+            &lt;source srcset="image.webp" type="image/webp">
+            &lt;img src="image.jpg" alt="A description of the image." 
+              width="300" height="200" loading="lazy" decoding="async">
+          &lt;/picture>
+        </code>
+        <p>
+          Primul element sursă indică o imagine în noul format AVIF. Dacă
+          browserul este capabil să redea imagini AVIF, atunci acesta este
+          fișierul imagine pe care îl alege. În caz contrar, se trece la
+          următorul element sursă.
+        </p>
+        <p>
+          Al doilea element sursă indică o imagine în format WebP. Dacă
+          browserul este capabil să redea imagini WebP, va folosi acel fișier
+          imagine.
+        </p>
+        <p>
+          În caz contrar, browserul va reveni la fișierul imagine din atributul
+          src al elementului img. Această imagine este un JPEG.
+        </p>
+      </section>
+      <section class="lesson-example mt-md">
+        <p>
+          Cat timp nu avem nevoie de alt format, putem sa le folosim oricare
+          dintre cele doua variante:
+        </p>
+        <p>
+          Fie <em>tag img cu atribut srcset</em>
+          <!--prettier-ignore -->
+          <code>
+          &lt;img
+            srcset="foo-320w.jpg 320w, foo-480w.jpg 480w, foo-800w.jpg 800w"
+            sizes="(max-width: 320px) 280px, (max-width: 480px) 440px, 800px"
+            src="foo-800w.jpg"
+            alt="bar"
+          /&gt;
+          </code>
+        </p>
+        <p>
+          Fie <em>tag picture, cu elemente source si atribute srcset</em>
+          <!-- prettier-ignore -->
+          <code>
+            &lt;picture>
+              &lt;source media="(max-width: 799px)" srcset="foo-480w.jpg" />
+              &lt;source media="(min-width: 800px)" srcset="foo-800w.jpg" />
+              &lt;img src="foo-800w.jpg" alt="bar" />
+            &lt;/picture>
+          </code>
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
